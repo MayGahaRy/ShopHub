@@ -1,0 +1,24 @@
+services:
+  shop-backend:
+    build:
+      context: ./server
+    container_name: shop-backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./server/database.sqlite:/app/database.sqlite
+    environment:
+      - PORT=5000
+    restart: always
+
+  shop-frontend:
+    build:
+      context: .
+      args:
+        - VITE_API_URL=/api
+    container_name: shop-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - shop-backend
+    restart: always
