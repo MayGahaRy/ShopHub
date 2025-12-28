@@ -1,5 +1,7 @@
 # ShopHub - Premium Online Store
 
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/MayGahaRy/ShopHub)
+
 A cinematic, full-featured e-commerce application built with React (Vite) and Node.js (Express). Features a robust theme system, dark mode, smooth animations, and a professional glass-morphism aesthetic.
 
 ## 🚀 Quick Start with Docker
