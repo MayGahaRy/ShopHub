@@ -4,17 +4,18 @@
 
 A cinematic, full-featured e-commerce application built with React (Vite) and Node.js (Express). Features a robust theme system, dark mode, smooth animations, and a professional glass-morphism aesthetic.
 
-## 📸 Desktop Preview
+## 📸 Application Preview
 
-````carousel
+### Desktop Views
 ![Desktop Light Mode](screenshots/desktop-light.png)
-<!-- slide -->
+*Light Mode*
+
 ![Desktop Dark Mode](screenshots/desktop-dark.png)
-````
+*Dark Mode*
 
-## 📱 Mobile Experience
-
+### Mobile View
 ![Mobile Dark Mode](screenshots/mobile-dark.png)
+*Responsive Mobile Design*
 
 ## 🚀 Quick Start with Docker
 
