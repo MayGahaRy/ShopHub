@@ -4,6 +4,18 @@
 
 A cinematic, full-featured e-commerce application built with React (Vite) and Node.js (Express). Features a robust theme system, dark mode, smooth animations, and a professional glass-morphism aesthetic.
 
+## 📸 Desktop Preview
+
+````carousel
+![Desktop Light Mode](screenshots/desktop-light.png)
+<!-- slide -->
+![Desktop Dark Mode](screenshots/desktop-dark.png)
+````
+
+## 📱 Mobile Experience
+
+![Mobile Dark Mode](screenshots/mobile-dark.png)
+
 ## 🚀 Quick Start with Docker
 
 The easiest way to get ShopHub running is using Docker.
