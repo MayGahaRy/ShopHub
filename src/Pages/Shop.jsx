@@ -130,7 +130,7 @@ export default function Shop() {
                                         value={priceRange.min}
                                         placeholder="Min"
                                         onChange={(e) => setPriceRange(p => ({ ...p, min: Math.max(0, parseInt(e.target.value) || 0) }))}
-                                        className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+                                        className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-3 py-2 text-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-blue-500/20"
                                     />
                                 </div>
                                 <div className="flex-1">
@@ -139,7 +139,7 @@ export default function Shop() {
                                         value={priceRange.max}
                                         placeholder="Max"
                                         onChange={(e) => setPriceRange(p => ({ ...p, max: Math.max(0, parseInt(e.target.value) || 0) }))}
-                                        className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-3 py-2 text-sm text-[var(--text-primary)] outline-none"
+                                        className="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-3 py-2 text-sm text-[var(--text-primary)] outline-none focus:ring-2 focus:ring-blue-500/20"
                                     />
                                 </div>
                             </div>
@@ -151,7 +151,7 @@ export default function Shop() {
                         <span className="text-sm font-black text-[var(--text-primary)]">In Stock</span>
                         <button
                             onClick={() => setShowOnlyInStock(!showOnlyInStock)}
-                            className={`w-12 h-6 rounded-full transition-all relative ${showOnlyInStock ? 'bg-blue-600' : 'bg-gray-200 dark:bg-gray-700'}`}
+                            className={`w-12 h-6 rounded-full transition-all relative ${showOnlyInStock ? 'bg-blue-600' : 'bg-gray-200 dark:bg-slate-700'}`}
                         >
                             <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${showOnlyInStock ? 'translate-x-6' : 'translate-x-0'}`}></span>
                         </button>
@@ -197,9 +197,9 @@ export default function Shop() {
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-32 bg-white rounded-[3rem] border border-gray-100 shadow-sm">
-                            <h3 className="text-2xl font-black text-gray-900 mb-2 italic">Nothing found.</h3>
-                            <p className="text-gray-400 max-w-xs mx-auto mb-10">Try a different filter or check back later for new arrivals.</p>
+                        <div className="text-center py-32 bg-[var(--bg-surface)] rounded-[3rem] border border-[var(--border-color)] shadow-sm">
+                            <h3 className="text-2xl font-black text-[var(--text-primary)] mb-2 italic">Nothing found.</h3>
+                            <p className="text-[var(--text-secondary)] max-w-xs mx-auto mb-10">Try a different filter or check back later for new arrivals.</p>
                             <button
                                 onClick={() => {
                                     setSearchQuery('')
@@ -208,7 +208,7 @@ export default function Shop() {
                                     setSortBy('newest')
                                     setShowOnlyInStock(false)
                                 }}
-                                className="bg-gray-900 text-white px-8 py-3 rounded-2xl font-black hover:bg-blue-600 transition-all shadow-xl active:scale-95"
+                                className="bg-[var(--text-primary)] text-[var(--bg-primary)] px-8 py-3 rounded-2xl font-black hover:bg-blue-600 hover:text-white transition-all shadow-xl active:scale-95"
                             >
                                 Reset All
                             </button>

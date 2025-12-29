@@ -50,15 +50,15 @@ export default function Cart() {
 
     if (cartItems.length === 0) {
         return (
-            <div className="min-h-screen bg-gray-50">
+            <div className="min-h-screen bg-[var(--bg-primary)] transition-colors duration-500">
                 <Nav />
                 <div className="max-w-7xl mx-auto px-4 py-16">
                     <div className="text-center">
-                        <svg className="w-32 h-32 mx-auto text-gray-300 mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-32 h-32 mx-auto text-[var(--text-muted)] mb-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-4">Your cart is empty</h2>
-                        <p className="text-gray-600 mb-8">Add some products to get started!</p>
+                        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-4">Your cart is empty</h2>
+                        <p className="text-[var(--text-secondary)] mb-8">Add some products to get started!</p>
                         <Link
                             to="/"
                             className="inline-block bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:from-blue-600 hover:to-blue-700 transition-all duration-300 hover:shadow-lg"
@@ -72,17 +72,17 @@ export default function Cart() {
     }
 
     return (
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-[var(--bg-primary)] transition-colors duration-500">
             <Nav />
 
             <div className="max-w-7xl mx-auto px-4 py-12">
-                <h1 className="text-4xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+                <h1 className="text-4xl font-bold text-[var(--text-primary)] mb-8">Shopping Cart</h1>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                     {/* Cart Items */}
                     <div className="lg:col-span-2 space-y-4">
                         {cartItems.map(item => (
-                            <div key={item.id} className="bg-white rounded-xl p-6 shadow-sm relative overflow-hidden">
+                            <div key={item.id} className="bg-[var(--bg-surface)] rounded-xl p-6 shadow-sm relative overflow-hidden border border-[var(--border-color)]">
                                 {item.discount > 0 && (
                                     <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
                                         SALE {item.discount}% OFF
@@ -94,32 +94,32 @@ export default function Cart() {
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="w-32 h-32 object-cover rounded-lg"
+                                            className="w-32 h-32 object-cover rounded-lg border border-[var(--border-color)]"
                                         />
                                     </Link>
 
                                     {/* Details */}
                                     <div className="flex-1">
                                         <Link to={`/product/${item.id}`}>
-                                            <h3 className="text-lg font-bold text-gray-900 hover:text-blue-600 transition-colors mb-2">
+                                            <h3 className="text-lg font-bold text-[var(--text-primary)] hover:text-blue-600 transition-colors mb-2">
                                                 {item.name}
                                             </h3>
                                         </Link>
-                                        <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+                                        <p className="text-[var(--text-secondary)] text-sm mb-4">{item.description}</p>
 
                                         <div className="flex items-center justify-between">
                                             {/* Quantity */}
-                                            <div className="flex items-center border-2 border-gray-200 rounded-lg">
+                                            <div className="flex items-center border-2 border-[var(--border-color)] rounded-lg bg-[var(--bg-secondary)]">
                                                 <button
                                                     onClick={() => updateCartQuantity(item.id, item.quantity - 1)}
-                                                    className="px-3 py-2 hover:bg-gray-100 transition-colors"
+                                                    className="px-3 py-2 hover:bg-[var(--bg-surface)] transition-colors text-[var(--text-primary)]"
                                                 >
                                                     -
                                                 </button>
-                                                <span className="px-4 py-2 font-semibold">{item.quantity}</span>
+                                                <span className="px-4 py-2 font-semibold text-[var(--text-primary)]">{item.quantity}</span>
                                                 <button
                                                     onClick={() => updateCartQuantity(item.id, item.quantity + 1)}
-                                                    className="px-3 py-2 hover:bg-gray-100 transition-colors"
+                                                    className="px-3 py-2 hover:bg-[var(--bg-surface)] transition-colors text-[var(--text-primary)]"
                                                 >
                                                     +
                                                 </button>
@@ -127,10 +127,10 @@ export default function Cart() {
 
                                             {/* Price */}
                                             <div className="text-right">
-                                                <p className="text-2xl font-bold text-gray-900">
+                                                <p className="text-2xl font-bold text-[var(--text-primary)]">
                                                     ${(item.price * (1 - (item.discount || 0) / 100) * item.quantity).toFixed(2)}
                                                 </p>
-                                                <p className="text-sm text-gray-500">
+                                                <p className="text-sm text-[var(--text-muted)]">
                                                     {item.discount > 0 ? (
                                                         <>
                                                             <span className="line-through mr-1">${item.price}</span>
@@ -147,7 +147,7 @@ export default function Cart() {
                                     {/* Remove Button */}
                                     <button
                                         onClick={() => removeFromCart(item.id)}
-                                        className="text-gray-400 hover:text-red-500 transition-colors"
+                                        className="text-[var(--text-muted)] hover:text-red-500 transition-colors"
                                     >
                                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -171,55 +171,55 @@ export default function Cart() {
 
                     {/* Order Summary */}
                     <div className="lg:col-span-1">
-                        <div className="bg-white rounded-xl p-6 shadow-sm sticky top-4">
-                            <h2 className="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
+                        <div className="bg-[var(--bg-surface)] rounded-xl p-6 shadow-sm sticky top-4 border border-[var(--border-color)]">
+                            <h2 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Order Summary</h2>
 
                             {/* Coupon */}
                             <div className="mb-6">
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Coupon Code</label>
+                                <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">Coupon Code</label>
                                 <div className="flex gap-2">
                                     <input
                                         type="text"
                                         value={couponCode}
                                         onChange={(e) => setCouponCode(e.target.value)}
                                         placeholder="Enter code"
-                                        className="flex-1 px-4 py-2 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                        className="flex-1 px-4 py-2 border-2 border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:outline-none focus:border-blue-500 placeholder:text-[var(--text-muted)]"
                                     />
                                     <button
                                         onClick={handleApplyCoupon}
-                                        className="px-4 py-2 bg-gray-900 text-white hover:bg-gray-800 rounded-lg font-medium transition-colors"
+                                        className="px-4 py-2 bg-[var(--text-primary)] text-[var(--bg-primary)] hover:bg-blue-600 hover:text-white rounded-lg font-medium transition-colors"
                                     >
                                         Apply
                                     </button>
                                 </div>
                                 {couponError && <p className="mt-2 text-xs text-red-500">{couponError}</p>}
                                 {activeCoupon && (
-                                    <div className="mt-2 bg-green-50 border border-green-200 text-green-700 px-3 py-2 rounded-lg text-sm flex justify-between items-center">
+                                    <div className="mt-2 bg-green-500/10 border border-green-500/20 text-green-600 px-3 py-2 rounded-lg text-sm flex justify-between items-center">
                                         <span>Code <b>{activeCoupon.code}</b> applied!</span>
-                                        <button onClick={() => setActiveCoupon(null)} className="text-green-900 hover:text-green-700">&times;</button>
+                                        <button onClick={() => setActiveCoupon(null)} className="text-green-800 dark:text-green-400 hover:opacity-75 transition-opacity">&times;</button>
                                     </div>
                                 )}
                             </div>
 
                             {/* Totals */}
                             <div className="space-y-3 mb-6">
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-[var(--text-secondary)]">
                                     <span>Subtotal</span>
-                                    <span className="font-semibold">${subtotal.toFixed(2)}</span>
+                                    <span className="font-semibold text-[var(--text-primary)]">${subtotal.toFixed(2)}</span>
                                 </div>
                                 {activeCoupon && (
-                                    <div className="flex justify-between text-green-600">
+                                    <div className="flex justify-between text-green-600 font-medium">
                                         <span>Discount ({activeCoupon.type === 'freeship' ? 'Free Shipping' : `${activeCoupon.discount}%`})</span>
-                                        <span className="font-semibold">
+                                        <span>
                                             {activeCoupon.type === 'freeship' ? '$0' : `-$${discountAmount.toFixed(2)}`}
                                         </span>
                                     </div>
                                 )}
-                                <div className="flex justify-between text-gray-600">
+                                <div className="flex justify-between text-[var(--text-secondary)]">
                                     <span>Shipping</span>
-                                    <span className="font-semibold">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
+                                    <span className="font-semibold text-[var(--text-primary)]">{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</span>
                                 </div>
-                                <div className="border-t-2 border-gray-200 pt-3 flex justify-between text-lg font-bold text-gray-900">
+                                <div className="border-t-2 border-[var(--border-color)] pt-3 flex justify-between text-lg font-bold text-[var(--text-primary)]">
                                     <span>Total</span>
                                     <span>${total.toFixed(2)}</span>
                                 </div>

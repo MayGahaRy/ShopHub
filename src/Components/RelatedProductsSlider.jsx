@@ -20,31 +20,31 @@ export default function RelatedProductsSlider({ products, currentProductId }) {
     const relatedProducts = products.filter(p => p.id !== currentProductId)
 
     return (
-        <div className="py-12 bg-gray-50">
+        <div className="py-12 bg-[var(--bg-secondary)] border-t border-[var(--border-color)]">
             <div className="max-w-7xl mx-auto px-4">
                 <div className="flex items-center justify-between mb-8">
                     <div>
-                        <h2 className="text-3xl font-bold text-gray-900 mb-2">You May Also Like</h2>
-                        <p className="text-gray-600">Similar products from this category</p>
+                        <h2 className="text-3xl font-bold text-[var(--text-primary)] mb-2">You May Also Like</h2>
+                        <p className="text-[var(--text-secondary)]">Similar products from this category</p>
                     </div>
 
                     {/* Navigation Arrows */}
                     <div className="flex gap-2">
                         <button
                             onClick={() => scroll('left')}
-                            className="p-3 bg-white hover:bg-gray-100 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                            className="p-3 bg-[var(--bg-surface)] hover:bg-[var(--bg-secondary)] rounded-full shadow-lg transition-all duration-300 hover:scale-110 border border-[var(--border-color)]"
                             aria-label="Scroll left"
                         >
-                            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-6 h-6 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                             </svg>
                         </button>
                         <button
                             onClick={() => scroll('right')}
-                            className="p-3 bg-white hover:bg-gray-100 rounded-full shadow-lg transition-all duration-300 hover:scale-110"
+                            className="p-3 bg-[var(--bg-surface)] hover:bg-[var(--bg-secondary)] rounded-full shadow-lg transition-all duration-300 hover:scale-110 border border-[var(--border-color)]"
                             aria-label="Scroll right"
                         >
-                            <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg className="w-6 h-6 text-[var(--text-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                             </svg>
                         </button>

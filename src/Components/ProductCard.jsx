@@ -75,7 +75,7 @@ export default function ProductCard({ product }) {
                         {[...Array(5)].map((_, i) => (
                             <svg
                                 key={i}
-                                className={`w-4 h-4 ${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                                className={`w-4 h-4 ${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-[var(--text-muted)]'}`}
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
@@ -108,7 +108,7 @@ export default function ProductCard({ product }) {
                             onClick={handleAddToCart}
                             className={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 ${inStock
                                 ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white hover:from-blue-600 hover:to-blue-700 hover:shadow-lg hover:scale-105'
-                                : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                                : 'bg-[var(--bg-secondary)] text-[var(--text-muted)] border border-[var(--border-color)] cursor-not-allowed'
                                 }`}
                             disabled={!inStock}
                         >

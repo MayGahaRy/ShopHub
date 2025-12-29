@@ -5,11 +5,6 @@ import Nav from '../Components/Nav'
 import { useApp } from '../context/AppContext'
 
 export default function ProductDetail() {
-    const { id } = useParams()
-    const navigate = useNavigate()
-    const productId = parseInt(id)
-    const product = products.find(p => p.id === productId)
-
     const {
         products,
         addToCart,
@@ -20,6 +15,11 @@ export default function ProductDetail() {
         getProductReviews,
         getProductAverageRating
     } = useApp()
+
+    const { id } = useParams()
+    const navigate = useNavigate()
+    const productId = parseInt(id)
+    const product = products.find(p => p.id === productId)
 
     const [selectedImage, setSelectedImage] = useState(0)
     const [quantity, setQuantity] = useState(1)
@@ -70,22 +70,22 @@ export default function ProductDetail() {
     }
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-[var(--bg-primary)] transition-colors duration-500">
             {/* Navigation */}
             <Nav />
 
             <div className="max-w-7xl mx-auto px-4 py-8">
                 {/* Breadcrumb */}
-                <nav className="flex items-center gap-2 text-sm text-gray-600 mb-8">
+                <nav className="flex items-center gap-2 text-sm text-[var(--text-secondary)] mb-8">
                     <Link to="/" className="hover:text-blue-500 transition-colors">Home</Link>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-gray-400">{product.category}</span>
+                    <span className="text-[var(--text-muted)]">{product.category}</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
-                    <span className="text-gray-900 font-medium">{product.name}</span>
+                    <span className="text-[var(--text-primary)] font-medium">{product.name}</span>
                 </nav>
 
                 {/* Product Section */}
@@ -93,7 +93,7 @@ export default function ProductDetail() {
                     {/* Image Gallery */}
                     <div className="space-y-4">
                         {/* Main Image */}
-                        <div className="relative aspect-square bg-gray-100 rounded-2xl overflow-hidden group">
+                        <div className="relative aspect-square bg-[var(--bg-secondary)] rounded-2xl overflow-hidden group border border-[var(--border-color)]">
                             <img
                                 src={productImages[selectedImage]}
                                 alt={product.name}
@@ -113,9 +113,9 @@ export default function ProductDetail() {
                                     <button
                                         key={index}
                                         onClick={() => setSelectedImage(index)}
-                                        className={`aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 transition-all duration-300 ${selectedImage === index
+                                        className={`aspect-square bg-[var(--bg-secondary)] rounded-lg overflow-hidden border-2 transition-all duration-300 ${selectedImage === index
                                             ? 'border-blue-500 scale-95'
-                                            : 'border-transparent hover:border-gray-300'
+                                            : 'border-transparent hover:border-[var(--border-color)]'
                                             }`}
                                     >
                                         <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
@@ -135,7 +135,7 @@ export default function ProductDetail() {
                         </div>
 
                         {/* Product Name */}
-                        <h1 className="text-4xl font-bold text-gray-900">{product.name}</h1>
+                        <h1 className="text-4xl font-bold text-[var(--text-primary)]">{product.name}</h1>
 
                         {/* Rating */}
                         <div className="flex items-center gap-3">
@@ -143,7 +143,7 @@ export default function ProductDetail() {
                                 {[...Array(5)].map((_, i) => (
                                     <svg
                                         key={i}
-                                        className={`w-5 h-5 ${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-gray-300'}`}
+                                        className={`w-5 h-5 ${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-[var(--text-muted)]'}`}
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                     >
@@ -151,14 +151,14 @@ export default function ProductDetail() {
                                     </svg>
                                 ))}
                             </div>
-                            <span className="text-gray-600">({avgRating.toFixed(1)} out of 5) • {reviewCount} reviews</span>
+                            <span className="text-[var(--text-secondary)]">({avgRating.toFixed(1)} out of 5) • {reviewCount} reviews</span>
                         </div>
 
                         {/* Price */}
                         <div className="flex items-baseline gap-4">
-                            <span className="text-5xl font-bold text-gray-900">${product.price}</span>
+                            <span className="text-5xl font-bold text-[var(--text-primary)]">${product.price}</span>
                             {product.originalPrice && (
-                                <span className="text-2xl text-gray-400 line-through">${product.originalPrice}</span>
+                                <span className="text-2xl text-[var(--text-muted)] line-through">${product.originalPrice}</span>
                             )}
                         </div>
 
@@ -171,22 +171,22 @@ export default function ProductDetail() {
                         </div>
 
                         {/* Description */}
-                        <p className="text-lg text-gray-600 leading-relaxed">{product.description}</p>
+                        <p className="text-lg text-[var(--text-secondary)] leading-relaxed">{product.description}</p>
 
                         {/* Quantity Selector */}
                         <div className="flex items-center gap-4">
-                            <span className="text-gray-700 font-medium">Quantity:</span>
-                            <div className="flex items-center border-2 border-gray-300 rounded-lg">
+                            <span className="text-[var(--text-primary)] font-medium">Quantity:</span>
+                            <div className="flex items-center border-2 border-[var(--border-color)] rounded-lg bg-[var(--bg-secondary)]">
                                 <button
                                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                                    className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                                    className="px-4 py-2 hover:bg-[var(--bg-surface)] transition-colors text-[var(--text-primary)]"
                                 >
                                     -
                                 </button>
-                                <span className="px-6 py-2 font-semibold">{quantity}</span>
+                                <span className="px-6 py-2 font-semibold text-[var(--text-primary)]">{quantity}</span>
                                 <button
                                     onClick={() => setQuantity(quantity + 1)}
-                                    className="px-4 py-2 hover:bg-gray-100 transition-colors"
+                                    className="px-4 py-2 hover:bg-[var(--bg-surface)] transition-colors text-[var(--text-primary)]"
                                 >
                                     +
                                 </button>
@@ -209,7 +209,7 @@ export default function ProductDetail() {
                                 onClick={handleToggleFavorite}
                                 className={`px-6 py-4 border-2 rounded-xl transition-all duration-300 ${isFavorite(product.id)
                                     ? 'border-red-500 text-red-500 bg-red-50'
-                                    : 'border-gray-300 hover:border-blue-500 hover:text-blue-500'
+                                    : 'border-[var(--border-color)] text-[var(--text-muted)] hover:border-blue-500 hover:text-blue-500'
                                     }`}
                             >
                                 <svg className={`w-6 h-6 ${isFavorite(product.id) ? 'fill-current' : 'fill-none'}`} stroke="currentColor" viewBox="0 0 24 24">
@@ -220,13 +220,13 @@ export default function ProductDetail() {
 
                         {/* Specifications */}
                         {product.specs && (
-                            <div className="mt-8 border-t pt-8">
-                                <h3 className="text-2xl font-bold text-gray-900 mb-4">Specifications</h3>
+                            <div className="mt-8 border-t border-[var(--border-color)] pt-8">
+                                <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-4">Specifications</h3>
                                 <div className="grid grid-cols-1 gap-3">
                                     {Object.entries(product.specs).map(([key, value]) => (
-                                        <div key={key} className="flex items-center justify-between py-3 border-b border-gray-200">
-                                            <span className="text-gray-600 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                                            <span className="font-semibold text-gray-900">{value}</span>
+                                        <div key={key} className="flex items-center justify-between py-3 border-b border-[var(--border-color)]">
+                                            <span className="text-[var(--text-secondary)] capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
+                                            <span className="font-semibold text-[var(--text-primary)]">{value}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -234,16 +234,16 @@ export default function ProductDetail() {
                         )}
 
                         {/* Reviews Section */}
-                        <div className="mt-8 border-t pt-8">
-                            <h3 className="text-2xl font-bold text-gray-900 mb-6">Customer Reviews</h3>
+                        <div className="mt-8 border-t border-[var(--border-color)] pt-8">
+                            <h3 className="text-2xl font-bold text-[var(--text-primary)] mb-6">Customer Reviews</h3>
 
                             {/* Add Review Form */}
-                            <div className="bg-gray-50 rounded-xl p-6 mb-8">
-                                <h4 className="text-lg font-bold mb-4">Write a Review</h4>
+                            <div className="bg-[var(--bg-secondary)] rounded-xl p-6 mb-8 border border-[var(--border-color)]">
+                                <h4 className="text-lg font-bold mb-4 text-[var(--text-primary)]">Write a Review</h4>
                                 {isAuthenticated ? (
                                     <form onSubmit={handleSubmitReview}>
                                         <div className="mb-4">
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                                            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">Rating</label>
                                             <div className="flex gap-2">
                                                 {[1, 2, 3, 4, 5].map((star) => (
                                                     <button
@@ -253,7 +253,7 @@ export default function ProductDetail() {
                                                         className="focus:outline-none"
                                                     >
                                                         <svg
-                                                            className={`w-8 h-8 ${star <= rating ? 'text-yellow-400' : 'text-gray-300'}`}
+                                                            className={`w-8 h-8 ${star <= rating ? 'text-yellow-400' : 'text-[var(--text-muted)]'}`}
                                                             fill="currentColor"
                                                             viewBox="0 0 20 20"
                                                         >
@@ -264,11 +264,11 @@ export default function ProductDetail() {
                                             </div>
                                         </div>
                                         <div className="mb-4">
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">Review</label>
+                                            <label className="block text-sm font-medium text-[var(--text-secondary)] mb-2">Review</label>
                                             <textarea
                                                 value={comment}
                                                 onChange={(e) => setComment(e.target.value)}
-                                                className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-blue-500"
+                                                className="w-full px-4 py-3 border-2 border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-primary)] rounded-lg focus:outline-none focus:border-blue-500 placeholder:text-[var(--text-muted)]"
                                                 rows="3"
                                                 placeholder="Share your thoughts about this product..."
                                                 required
@@ -283,10 +283,10 @@ export default function ProductDetail() {
                                     </form>
                                 ) : (
                                     <div className="text-center py-4">
-                                        <p className="text-gray-600 mb-4">Please log in to write a review</p>
+                                        <p className="text-[var(--text-secondary)] mb-4">Please log in to write a review</p>
                                         <Link
                                             to="/login"
-                                            className="inline-block bg-white border-2 border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 transition-colors"
+                                            className="inline-block bg-[var(--bg-surface)] border-2 border-blue-500 text-blue-500 px-6 py-2 rounded-lg font-medium hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-colors"
                                         >
                                             Log In
                                         </Link>
@@ -297,19 +297,19 @@ export default function ProductDetail() {
                             {/* Reviews List */}
                             <div className="space-y-6">
                                 {reviews.length === 0 ? (
-                                    <p className="text-gray-500 text-center py-4">No reviews yet. Be the first to review!</p>
+                                    <p className="text-[var(--text-muted)] text-center py-4">No reviews yet. Be the first to review!</p>
                                 ) : (
                                     reviews.map(review => (
-                                        <div key={review.id} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
+                                        <div key={review.id} className="border-b border-[var(--border-color)] pb-6 last:border-0 last:pb-0">
                                             <div className="flex items-center gap-4 mb-2">
                                                 <img
                                                     src={review.userAvatar}
                                                     alt={review.userName}
-                                                    className="w-10 h-10 rounded-full"
+                                                    className="w-10 h-10 rounded-full border border-[var(--border-color)]"
                                                 />
                                                 <div>
-                                                    <h5 className="font-bold text-gray-900">{review.userName}</h5>
-                                                    <div className="flex items-center text-xs text-gray-500 gap-2">
+                                                    <h5 className="font-bold text-[var(--text-primary)]">{review.userName}</h5>
+                                                    <div className="flex items-center text-xs text-[var(--text-muted)] gap-2">
                                                         <div className="flex text-yellow-400">
                                                             {[...Array(5)].map((_, i) => (
                                                                 <svg
@@ -326,7 +326,7 @@ export default function ProductDetail() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <p className="text-gray-600">{review.comment}</p>
+                                            <p className="text-[var(--text-secondary)]">{review.comment}</p>
                                         </div>
                                     ))
                                 )}
